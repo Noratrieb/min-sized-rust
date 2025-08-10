@@ -79,14 +79,13 @@ opt-level = "z"  # Optimize for size.
 
 By default,
 [Cargo instructs compilation units to be compiled and optimized in isolation][cargo-profile].
-[LTO](https://llvm.org/docs/LinkTimeOptimization.html) instructs the linker to optimize at the
-link stage. This can, for example, remove dead code and often times reduces binary size.
+"fat" ink-time optimization instructs rustc to combine all code from the crate graph into a single codegen unit. This can, for example, remove dead code and often times reduces binary size and the cost of greatly increased compile times.
 
-Enable LTO in `Cargo.toml`:
+Enable fat LTO in `Cargo.toml`:
 
 ```toml
 [profile.release]
-lto = true
+lto = "fat"
 ```
 
 # Dynamic Linking: Why It Doesn't Work
